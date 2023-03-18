@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[]) {
     int first[2], second[2], n, i, j, flag, flag2 = 0;
-    size_t len, size;
+    size_t len, s;
     pipe(first);
     pipe(second);
     char in[1000];
@@ -23,17 +23,17 @@ int main(int argc, char *argv[]) {
             printf("Fail to open\n");
             exit(-1);
         }
-        size = read(first[0], in, 1000);
-        if (size == -1) {
+        s = read(first[0], in, 1000);
+        if (s == -1) {
             printf("Fail to read\n");
             exit(-1);
         }
-        size = write(first[1], in, size);
+        s = write(first[1], in, s);
         close(first[0]);
         close(first[1]);
         exit(0);
     } else {
-        size = read(first[0], in, 1000);
+        s = read(first[0], in, 1000);
         close(first[0]);
         close(first[1]);
     }
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
                 printf("Fail to open\n");
                 exit(-1);
             }
-            size = read(second[0], out, 1000);
+            s = read(second[0], out, 1000);
             int res_f = write(second[1], out, strlen(res));
             if (res_f == -1) {
                 printf("Fail to read\n");
@@ -88,7 +88,7 @@ int main(int argc, char *argv[]) {
             close(second[0]);
             close(second[1]);
         } else {
-            write(second[1], res, size);
+            write(second[1], res, s);
             close(second[0]);
             close(second[1]);
         }
