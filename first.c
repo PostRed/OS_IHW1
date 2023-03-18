@@ -7,8 +7,8 @@
 
 
 int main(int argc, char *argv[]) {
-    int first[2], second[2], n, i, j, flag, flag2 = 0;
-    size_t len, s;
+    int first[2], second[2], n, i, j, flag, flag2 = 0, s;
+    size_t len;
     pipe(first);
     pipe(second);
     char in[1000];
